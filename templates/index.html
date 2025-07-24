@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>House Price Prediction</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-100 to-blue-100 font-sans min-h-screen">
+  <div class="max-w-6xl mx-auto py-12 px-4">
+    <div class="text-center mb-10">
+      <img src="https://cdn-icons-png.flaticon.com/512/1063/1063893.png" alt="House Icon" class="w-40 mx-auto mb-3 animate-bounce">
+      <h1 class="text-4xl md:text-5xl font-bold text-indigo-700">House Price Prediction</h1>
+      <p class="text-gray-600 mt-3">Estimate your house value instantly using our ML model</p>
+    </div>
+
+    <form action="/predict" method="POST" class="bg-white shadow-2xl rounded-xl p-8">
+        <template id="field-template"></template>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div>
+    <label class="block font-semibold">GrLivArea</label>
+    <input name="GrLivArea" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Above ground living area (sq ft)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">OverallQual</label>
+    <input name="OverallQual" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Overall quality (1-10)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">KitchenQual</label>
+    <input name="KitchenQual" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Kitchen quality (1-5)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">GarageArea</label>
+    <input name="GarageArea" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Garage size (sq ft)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">GarageCars</label>
+    <input name="GarageCars" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="No. of garage cars" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">TotalBsmtSF</label>
+    <input name="TotalBsmtSF" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Total basement area (sq ft)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">ExterQual</label>
+    <input name="ExterQual" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Exterior quality (1-5)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">1stFlrSF</label>
+    <input name="1stFlrSF" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="First floor area (sq ft)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">BsmtQual</label>
+    <input name="BsmtQual" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Basement height (1-5)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">GarageFinish</label>
+    <input name="GarageFinish" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Garage finish level (1-3)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">FullBath</label>
+    <input name="FullBath" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Number of full baths" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">TotRmsAbvGrd</label>
+    <input name="TotRmsAbvGrd" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Total rooms above ground" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">Foundation_PConc</label>
+    <input name="Foundation_PConc" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="1 for PConc, 0 otherwise" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">2ndFlrSF</label>
+    <input name="2ndFlrSF" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Second floor area (sq ft)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">BsmtFinSF1</label>
+    <input name="BsmtFinSF1" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Finished basement area (sq ft)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">Fireplaces</label>
+    <input name="Fireplaces" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="No. of fireplaces" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">LotArea</label>
+    <input name="LotArea" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Lot area (sq ft)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">LotFrontage</label>
+    <input name="LotFrontage" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Linear feet of street" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">MasVnrArea</label>
+    <input name="MasVnrArea" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Masonry veneer area (sq ft)" />
+  </div>
+
+  <div>
+    <label class="block font-semibold">BsmtFinType1</label>
+    <input name="BsmtFinType1" type="number" required class="w-full p-2 rounded border border-gray-300" placeholder="Basement finish type (1-6)" />
+  </div>
+</div>
+
+
+
+ 
+      <div class="mt-8">
+        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300">
+          🔍 Predict Price
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+</html> 
